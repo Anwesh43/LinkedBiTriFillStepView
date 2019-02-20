@@ -219,4 +219,13 @@ class BiTriFillStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiTriFillStepView {
+            val view : BiTriFillStepView = BiTriFillStepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
