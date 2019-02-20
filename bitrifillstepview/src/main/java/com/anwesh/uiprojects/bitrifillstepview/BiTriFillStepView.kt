@@ -196,4 +196,26 @@ class BiTriFillStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiTriFillStepView) {
+
+        private val btf : BiTriFillStep = BiTriFillStep(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            btf.draw(canvas, paint)
+            animator.animate {
+                btf.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            btf.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
